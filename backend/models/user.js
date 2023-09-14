@@ -15,15 +15,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.SMALLINT,
       primaryKey: true,
       autoIncrement: true
-
     },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING
-  }, {
-    sequelize,
-    underscored: true,
-    modelName: 'User',
-  });
+    email: DataTypes.STRING,
+    role: {
+      type: DataTypes.ENUM,
+      values: [
+        'reviewer',
+        'admin',
+      ],
+    },
+    passwordDigest: DataTypes.STRING
+  },
+    {
+      sequelize,
+      underscored: true,
+      modelName: 'User',
+    });
   return User;
 };
